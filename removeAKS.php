@@ -21,3 +21,17 @@ $connect = new mysqli($server, $user, $password, $db);
     }
   }
   echo "</table>";
+
+
+  $name = NULL;
+  $sql = "SELECT anvandare.Namn, anvandare.AID FROM `anvandare`";
+  $result = $connect ->query($sql);
+  echo "<table>";
+  if (mysqli_num_rows($result) > 0) {
+      // output data of each row   
+    echo "<th class='test'>Namn</th>";
+    while($row = mysqli_fetch_assoc($result)) {
+      ?> <tr <?php echo 'class = "'.$row["Namn"].' Table"' ?>><td> <?php echo $row["Namn"]. "</td> <td><button id='".$row["Namn"]."'>".$row['Namn']."</button></td></tr>";
+    }
+  }
+  echo "</table>";
