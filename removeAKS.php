@@ -8,19 +8,12 @@ $db = 'ntigskov_go2';
 
 $connect = new mysqli($server, $user, $password, $db);
 
+  if (!empty($_GET["Namn"])) {
+    $sql = "DELETE FROM `anvandare` WHERE `anvandare`.`Namn` = '".$_GET["Namn"]."'";
+    $result = $connect ->query($sql);
+    echo $sql;
+  } 
 
-  $name = NULL;
-  $sql = "SELECT anvandare.Namn, anvandare.AID, spel.Spel, kategorier.Kategorier, resultat.Poang FROM `anvandare`,`spel`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND spel.SID = resultat.SID AND kategorier.KID = resultat.KID";
-  $result = $connect ->query($sql);
-  echo "<table>";
-  if (mysqli_num_rows($result) > 0) {
-      // output data of each row   
-    echo "<th class='test'>Namn</th> <th class='test'>Spel</th> <th class='test'>Kategori</th> <th class='test'>Poäng</th>";
-    while($row = mysqli_fetch_assoc($result)) {
-      ?> <tr <?php echo 'class = "'.$row["Namn"].' Table"' ?>><td> <?php echo $row["Namn"]. "</td><td>". $row["Spel"]. "</td><td>". $row["Kategorier"]. "</td><td>". $row["Poang"]. "</td></tr>";
-    }
-  }
-  echo "</table>";
 
 
   $name = NULL;
@@ -31,7 +24,17 @@ $connect = new mysqli($server, $user, $password, $db);
       // output data of each row   
     echo "<th class='test'>Namn</th>";
     while($row = mysqli_fetch_assoc($result)) {
-      ?> <tr <?php echo 'class = "'.$row["Namn"].' Table"' ?>><td> <?php echo $row["Namn"]. "</td> <td><button id='".$row["Namn"]."'>".$row['Namn']."</button></td></tr>";
+      ?> <tr <?php echo 'id = "'.$row["Namn"].'"' ?>><td> <?php echo $row["Namn"]. "</td> <td>"
+      ?>
+      <form action="removeAKS.php" method="get">
+            <?php
+            echo '<input type="hidden" name="Namn" value="'.$row["Namn"].'">';
+            echo '<input type="submit" value="Show '.$row["Namn"].' results">';
+            ?>
+            </form>
+      <?php  "</td></tr>";
+      
     }
   }
   echo "</table>";
+  ?>
