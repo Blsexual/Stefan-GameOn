@@ -6,7 +6,7 @@ $db = 'ntigskov_go2';
 
 $con = new mysqli($server, $user, $password, $db);
 if(!$con){
-    die("Yeetus deletus".Mysqli_connect_error());
+    die("Connection failed, see error: ".Mysqli_connect_error());
 }
 ?>
 
