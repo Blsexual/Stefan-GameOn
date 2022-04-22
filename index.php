@@ -1,1 +1,1 @@
-<script>window.location.href = "inlogg/inloggningssida.php";</script>
+<script>window.location.href = "inlogg/inloggsida.php";</script>
