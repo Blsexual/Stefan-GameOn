@@ -1,16 +1,9 @@
 <?php
-$server = 'localhost';
-$user = 'root'; // På dator
-$password = '';
-//$user = 'ntigskov_go2'; // På serer
-//$password = '';
-$db = 'ntigskov_go2';
-
-$connect = new mysqli($server, $user, $password, $db);
+  require_once('db.php');
 
   if (!empty($_GET["Namn"])) {
     $sql = "DELETE FROM `anvandare` WHERE `anvandare`.`Namn` = '".$_GET["Namn"]."'";
-    $result = $connect ->query($sql);
+    $result = $con ->query($sql);
     echo $sql;
   } 
 
@@ -18,7 +11,7 @@ $connect = new mysqli($server, $user, $password, $db);
 
   $name = NULL;
   $sql = "SELECT anvandare.Namn, anvandare.AID FROM `anvandare`";
-  $result = $connect ->query($sql);
+  $result = $con ->query($sql);
   echo "<table>";
   if (mysqli_num_rows($result) > 0) {
       // output data of each row   
