@@ -1,0 +1,66 @@
+*{
+    margin:0;
+    padding:0;
+}
+input {
+    padding:0.5em;
+    font-size:1em;
+}
+input[type="text"],input[type="password"] {
+    min-width:100px;    
+    background:rgb(238, 236, 236);
+    border:none;
+    margin:0.4em;
+    padding:0.5em;
+    font-size: 30px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
+   
+}
+
+form {
+    text-align: center;
+    font-size: 18px;
+    border:1px solid #000000 dotted;
+    display: table;
+    margin:0 auto;
+    padding:1em;
+    
+}
+
+.top{
+
+    height: 100px;
+    width: 100%;
+    background: rgb(221,8,144);
+    background: linear-gradient(90deg, rgba(221,8,144,1) 0%, rgba(74,0,130,1) 35%, rgba(0,0,0,1) 100%);
+    box-shadow: -1px 5px 10px black;
+}
+
+svg{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    box-shadow: 1px 1px 1px black;
+}
+
+body{
+    background-color: rgb(193, 189, 189);
+  
+}
+
+p{
+    font-size: 100px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px dotted white;
+}
+
+
+p1{
+    font-size: 100px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: red;
+}
+
+
+
