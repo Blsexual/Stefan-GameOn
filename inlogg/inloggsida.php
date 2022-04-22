@@ -23,10 +23,10 @@ $inloggad_html = '';
 if (!empty($_POST)) {
     $varden = $_POST;
     $inloggad = false;
-    if ($varden['username'] == 'gw' && $varden['password'] == '112') {
+    if ($varden['username'] == 'stefan' && $varden['password'] == '112') {
         $inloggad = true;
     }
-    if ($varden['username'] == 'ap' && $varden['password'] == '200') {
+    if ($varden['username'] == 'gw' && $varden['password'] == '200') {
         $inloggad = true;
     }
     if ($varden['username'] == 'pa' && $varden['password'] == '1337') {
@@ -40,6 +40,11 @@ if (!empty($_POST)) {
         $inloggad_html .= '<a href="anvandarprofil.php?username=' . $varden['username'] . '">nu</a>.';
     }
 
+    if ($varden['username'] == 'stefan' && $varden['password'] == 'boi') {
+        
+
+    }
+
 }
 ?>
 
@@ -47,7 +52,7 @@ if (!empty($_POST)) {
     
     <div class="formular">  
           
-        <form method="POST" action="index.php">
+        <form method="POST" action="anvandarprofil.php">
             <p>GameOn</p><br>
             <input type="text" id="username" name="username" placeholder="Användarnamn">
             <br><input type="password" id="password" name="password" placeholder="Lösenord">
