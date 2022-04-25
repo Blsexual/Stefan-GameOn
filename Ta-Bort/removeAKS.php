@@ -15,7 +15,7 @@
   <?php
   // Uppdatera Kategorier
     if (!empty($_GET["Kategorier"])) {
-      $sql = "DELETE FROM `kategorier` WHERE `kategorier`.`Kategorier` = '".$_GET["Kategorier"]."'";
+      $sql = "DELETE FROM `kategorier` WHERE `kategorier`.`Kategorier` = '".$_GET["Kategorier"]."' AND `kategorier`.`KID` = '".$_GET["KID"]."'";
       $result = $con ->query($sql);
       echo $sql;
       echo '<script>window.location.href = "removeAKS.php";</script>';
@@ -25,7 +25,7 @@
   <?php
   // Uppdatera Spel
     if (!empty($_GET["Spel"])) {
-      $sql = "DELETE FROM `spel` WHERE `spel`.`Spel` = '".$_GET["Spel"]."'";
+      $sql = "DELETE FROM `spel` WHERE `spel`.`Spel` = '".$_GET["Spel"]."' AND `spel`.`SID` = '".$_GET["SID"]."'";
       $result = $con ->query($sql);
       echo $sql;
       echo '<script>window.location.href = "removeAKS.php";</script>';
@@ -42,13 +42,14 @@
     echo "<table>";
     if (mysqli_num_rows($result) > 0) {
         // output data of each row   
-      echo "<th class='test'>Namn</th>";
+      echo "<th class='Namn'>Namn</th>";
       while($row = mysqli_fetch_assoc($result)) {
         ?> <tr <?php echo 'id = "'.$row["Namn"].'"' ?>><td> <?php echo $row["Namn"]. "</td> <td>"
         ?>
-        <form action="removeAKS.php" method="get">
+        <form action="removeAKS.php" method="get" onsubmit= "return confirm('Är du säker?');">
               <?php
               echo '<input type="hidden" name="Namn" value="'.$row["Namn"].'">';
+              echo '<input type="hidden" name="AID" value="'.$row["AID"].'">';
               echo '<input type="submit" value="Ta bort '.$row["Namn"].'">';
               ?>
               </form>
@@ -67,13 +68,14 @@
     echo "<table>";
     if (mysqli_num_rows($result) > 0) {
         // output data of each row   
-      echo "<th class='test'>Kategori</th>";
+      echo "<th class='Kategori'>Kategori</th>";
       while($row = mysqli_fetch_assoc($result)) {
-        ?> <tr <?php echo 'id = "'.$row["Kategorier"].'"' ?>><td> <?php echo $row["Kategorier"]. "</td> <td>"
+        ?> <tr <?php echo 'id = "'.$row["Kategorier"].'"' ?>><td> <?php echo $row["Kategorier"]. "</td> <td>";
         ?>
-        <form action="removeAKS.php" method="get">
+          <form action="removeAKS.php" method="get" onsubmit= "return confirm('Är du säker?');"> 
               <?php
               echo '<input type="hidden" name="Kategorier" value="'.$row["Kategorier"].'">';
+              echo '<input type="hidden" name="KID" value="'.$row["KID"].'">';
               echo '<input type="submit" value="Ta bort '.$row["Kategorier"].'">';
               ?>
               </form>
@@ -92,13 +94,14 @@
     echo "<table>";
     if (mysqli_num_rows($result) > 0) {
         // output data of each row   
-      echo "<th class='test'>Spel</th>";
+      echo "<th class='Spel'>Spel</th>";
       while($row = mysqli_fetch_assoc($result)) {
         ?> <tr <?php echo 'id = "'.$row["Spel"].'"' ?>><td> <?php echo $row["Spel"]. "</td> <td>"
         ?>
-        <form action="removeAKS.php" method="get">
+        <form action="removeAKS.php" method="get" onsubmit= "return confirm('Är du säker?');">
               <?php
               echo '<input type="hidden" name="Spel" value="'.$row["Spel"].'">';
+              echo '<input type="hidden" name="SID" value="'.$row["SID"].'">';
               echo '<input type="submit" value="Ta bort '.$row["Spel"].'">';
               ?>
               </form>
