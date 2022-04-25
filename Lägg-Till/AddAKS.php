@@ -4,18 +4,31 @@ require_once('../db.php');
 
 
 <?php
-$namn = $_POST['namn'];
-$kategori = $_POST['kategori'];
-$spel = $_POST['spel'];
-$sqla = "INSERT INTO `anvandare` (`Namn`) VALUES ($namn)";
-$sqlk = "INSERT INTO `kategorier` (`Kategorier`) VALUES ($kategori)";
-$sqls = "INSERT INTO `spel` (`Spel`) VALUES ($spel)";
 
-if ($conn->query($sqla) === TRUE) {
-    echo "Clone created";
-}   else {
-    echo "Error no go: " . $conn->error;
+if (!empty($_POST['namn'])) {
+    echo $_POST['namn'];
+    $namn = $_POST['namn'];
+    $sql = "INSERT INTO `anvandare` (`AID`,`Namn`) VALUES (NULL,'".$namn."')";
+    $result = $con ->query($sql);
+    echo '<script>window.location.href = "addAKS.html";</script>';
 }
 
-$conn->close();
+if (!empty($_POST['kategori'])) {
+    echo $_POST['kategori'];
+    $kategori = $_POST['kategori'];
+    $sql = "INSERT INTO `kategorier` (`KID`,`Kategorier`) VALUES (NULL,'".$kategori."')";
+    $result = $con ->query($sql);
+    echo '<script>window.location.href = "addAKS.html";</script>';
+}
+
+if (!empty($_POST['spel'])) {
+    echo $_POST['spel'];
+    $spel = $_POST['spel'];
+    $sql = "INSERT INTO `spel` (`SID`,`Spel`) VALUES (NULL,'".$spel."')";
+    $result = $con ->query($sql);
+    echo '<script>window.location.href = "addAKS.html";</script>';
+}
+
+
+$con->close();
 ?>
