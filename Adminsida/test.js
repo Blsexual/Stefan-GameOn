@@ -1,9 +1,7 @@
-document.getElementById('#checkbox-dropdown').click
-
-$(".checkbox-dropdown").click(function () {
-    $(this).toggleClass("is-active");
-});
-
-$(".checkbox-dropdown ul").click(function(e) {
-    e.stopPropagation();
-});
+var checkList = document.getElementById('list1');
+checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+  if (checkList.classList.contains('visible'))
+    checkList.classList.remove('visible');
+  else
+    checkList.classList.add('visible');
+}
