@@ -1,3 +1,7 @@
+<?php
+  require_once('../db.php');
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -41,10 +45,7 @@ if (!empty($_POST)) {
     }
 
     if ($varden['username'] == 'stefan' && $varden['password'] == 'boi') {
-        
-
     }
-
 }
 ?>
 
@@ -54,8 +55,8 @@ if (!empty($_POST)) {
           
         <form method="POST" action="anvandarprofil.php">
             <p>GameOn</p><br>
-            <input type="text" id="username" name="username" placeholder="Användarnamn">
-            <br><input type="password" id="password" name="password" placeholder="Lösenord">
+            <input type="text" id="username" name="username" placeholder="Användarnamn" required>
+            <br><input type="password" id="password" name="password" placeholder="Lösenord" required>
             <br><input type="submit" value="Logga in">
         </form>
     </div>
