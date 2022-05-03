@@ -14,7 +14,7 @@
     padding: 20px 100px 20px 100px;
     border: 2px black;
     background: rgb(203, 201, 201);
-    border-radius: 10px;
+    border-radius: 10px
   }
   
   .dropdown-check-list .anchor:after {
@@ -24,7 +24,9 @@
     right: 10px;
     top: 20%;
     -webkit-transform: rotate(-135deg);
-    transform: rotate(-135deg);           /*vrider på pilen*/
+    transform: rotate(-135deg);    
+
+    /*vrider på pilen*/
   }
   
   .dropdown-check-list ul.items {
@@ -34,7 +36,7 @@
     border: 1px solid #ccc;
     border-top: 5px #ccc;
     background: rgb(173, 173, 173);
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
   }
   
   .dropdown-check-list ul.items li {
@@ -47,6 +49,8 @@
 
 .dropdown{
     position:relative;
+    top: 285px;
+    left: 300px
     
 }
 

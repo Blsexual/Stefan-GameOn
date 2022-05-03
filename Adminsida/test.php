@@ -36,46 +36,6 @@
 
 
 
-<!--!DOCTYPE html>
-<html>
-<body>
-
-
-
-
-<!DOCTYPE html>
-<html>
-<body>
-  
-
-    
-    <div id="checkbox-dropdown">
-    Choose city
-    <ul id="checkbox-dropdown-list">
-        <li>
-        <label>
-            <input type="checkbox" value="Vejle" name="city" />Milwaukee</label>
-        </li>
-        <li>
-        <label>
-            <input type="checkbox" value="Horsens" name="city" />Denver</label>
-        </li>
-        <li>
-        <label>
-            <input type="checkbox" value="Kolding" name="city" />Boston</label>
-        </li>
-        <li>
-        <label>
-            <input type="checkbox" value="Kolding" name="city" />LA</label>
-        </li>
-      
-        
-    </ul>
-    </div>
-<script src="test.js"></script>
-</body>
-</html>
-
 
 
 
