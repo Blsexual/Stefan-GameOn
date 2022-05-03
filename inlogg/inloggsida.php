@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once('../db.php');
 ?>
 
@@ -20,7 +21,7 @@
 </div>
 
 <?php
-session_start();
+
 
 $inloggad_html = '';
 
