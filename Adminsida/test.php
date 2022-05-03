@@ -7,36 +7,34 @@
 <body>
     <h2>Lägg till användare</h2>
     <form method="POST" action="anvandarprofil.php">
-        <input type="text" id="username" placeholder="Användarnamn" maxlength="20"><br> 
-        <div class="dropdown">
-            <div id="list1" class="dropdown-check-list" tabindex="100">
-                <span class="anchor">Välj behörigheter</span>
-                <ul class="items">
-                <?php 
-                    $sql = "SELECT kategorier,Kategorier FROM `kategorier`";
+        <div id= "NamnDrop" class="dropdown">
+            <span class="dropbtn">Namn</span>
+            <div class="dropdown-content">
+                <?php
+                    $sql = "SELECT Namn FROM `anvandare`";
                     $result = $con ->query($sql);
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
-                            echo '<li><input type="checkbox" />'.$row["Kategorier"].' </li>';
+                            echo '<input type = "checkbox" href="#">'.$row["Namn"].'</input> <br>';
                         }
                     }
-                ?>    
-                </ul>
+                ?>
             </div>
-        </div>       
-        <input type="submit" id="submit">
+        </div>
+        <div id = "KatDrop" class="dropdown">
+            <span class="dropbtn">Kategorier</span>
+            <div class="dropdown-content">
+                <?php
+                    $sql = "SELECT Kategorier FROM `kategorier`";
+                    $result = $con ->query($sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo '<input type = "checkbox" href="#">'.$row["Kategorier"].'</input> <br>';
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+        <input type="submit" value="skicka din jävel!">
     </form>
     <div class="tempruta"></div>
-    <script src="test.js"></script>
-</body>
-
-
-
-
-
-
-
-
-
-
-
