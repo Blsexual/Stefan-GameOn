@@ -27,7 +27,7 @@
     if (!empty($_GET["Spel"])) {
       echo $_GET["Spel"];
       echo $_GET["SID"];
-      $sql = "UPDATE `spel` SET `Spel` = '".$_GET["Spel"]."' WHERE `spel`.`KID` = ".$_GET["KID"].";";
+      $sql = "UPDATE `spel` SET `Spel` = '".$_GET["Spel"]."' WHERE `spel`.`SID` = ".$_GET["SID"].";";
       $result = $con ->query($sql);
     } 
 ?>
@@ -41,6 +41,7 @@
         // output data of each row   
       while($row = mysqli_fetch_assoc($result)) {
         echo "<div id=''>";
+        echo $row["Namn"];
           ?>
           <form action="Redigera-Data.php" method="get" > 
             <?php
@@ -65,6 +66,7 @@
         // output data of each row   
       while($row = mysqli_fetch_assoc($result)) {
         echo "<div id=''>";
+        echo $row["Kategorier"];
           ?>
           <form action="Redigera-Data.php" method="get" > 
             <?php
@@ -89,6 +91,7 @@
         // output data of each row   
       while($row = mysqli_fetch_assoc($result)) {
         echo "<div id=''>";
+        echo $row["Spel"];
           ?>
           <form action="Redigera-Data.php" method="get" > 
             <?php
