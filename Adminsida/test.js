@@ -5,3 +5,4 @@ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
   else
     checkList.classList.add('visible');
 }
+
