@@ -18,14 +18,14 @@
 #NamnDrop {
   position: relative;
   top: 330px;
-  left:300px;
+  left:100px;
   display: inline-block;
 }
 
 #KatDrop {
   position: relative;
   top: 330px;
-  left:300px;
+  left:100px;
   display: inline-block;
 }
 
@@ -63,7 +63,7 @@ input[type="submit"] {
     text-align: center;
     padding: 20px 75px 20px 75px;
     top: 325px;
-    left: 300px;
+    left: 100px;
     border: none;
     border-radius: 10px;
     background-color: rgb(203, 201, 201);
@@ -95,11 +95,12 @@ h2{
   top:0;
   right: 0;
   height: 100vh;
-  width: 35vw;
+  width: 45vw;
   background: rgb(110, 64, 103);
   box-shadow: 15px 0px 15px -15px inset rgb(74, 41, 69);
   padding-inline-start: 50px;
   padding-top: 50px;
+  overflow: scroll;
 
 }
 
@@ -120,6 +121,15 @@ h2{
   color: orange;
 }
 
+.anvandare h1{
+  background: purple;
+}
+
 li {
   margin-left: 25px;
+}
+
+.space{
+  height: 50px;
+  width: 1px;
 }
