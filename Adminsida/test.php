@@ -131,6 +131,7 @@
             }
             $Namn = $row["Namn"];
         }
+        echo "<div class = 'space'></div>"; 
     }
     
 
