@@ -92,31 +92,14 @@
             }
         }
     } 
-    else{
-        echo "Skipped <br>";
-    }
+    
 
     if (!empty($_POST["Namn"])) {
         echo '<script>window.location.href = "test.php";</script>';
     }
 
     
-    $sql = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
-    $result = $con ->query($sql);
-    if (mysqli_num_rows($result) > 0) {
-        echo '<table>';
-        $test = NULL;
-        while($row = mysqli_fetch_assoc($result)) {
-            if ($test != $row["Namn"].$row["Kategorier"]) {
-            echo $row["Namn"]." ".$row["Kategorier"];
-            echo '<br>';    
-            }
-            $test = $row["Namn"].$row["Kategorier"];
-        }
-        echo '</table>';
-    }
 
-    echo "<br>";
 
     $sql = "SELECT anvandare.Namn FROM `anvandare`,`resultat` WHERE anvandare.AID = resultat.AID";
     $result = $con ->query($sql);
@@ -125,19 +108,20 @@
         while($row = mysqli_fetch_assoc($result)) {
             if ($Namn != $row["Namn"]) {
                 $Namn = $row["Namn"];
-                $num = rand(100000,999999);
-                echo '<div class = "anvandare" style="background-color:#'.$num.';">';
-                echo $Namn."<br>";
+                echo '<div class = "anvandare">';
+                echo '<h1>'.$Namn.'</h1>';
                     $sql2 = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
                     $result2 = $con ->query($sql2);
                     if (mysqli_num_rows($result2) > 0) {
                         $test = NULL;
                         while($row2 = mysqli_fetch_assoc($result2)) {
                             if ($test != $row2["Namn"].$row2["Kategorier"]) {
+                                echo '<ul>';
                                 if ($Namn == $row2["Namn"]){
-                                    echo $row2["Kategorier"];
+                                    echo '<li><p1>'.$row2["Kategorier"].'</p1></li>';
                                     echo '<br>';    
                                 } 
+                                echo '</ul>';
                             }
                             $test = $row2["Namn"].$row2["Kategorier"];
                         }
@@ -149,19 +133,6 @@
         }
     }
     
-    echo "<br>";
 
-    $sql = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
-    $result = $con ->query($sql);
-    if (mysqli_num_rows($result) > 0) {
-        $test = NULL;
-        while($row = mysqli_fetch_assoc($result)) {
-            if ($test != $row["Namn"]) {
-            echo $row["Namn"]." ".$row["Kategorier"];
-            echo '<br>';    
-            }
-            $test = $row["Namn"];
-        }
-    }
     ?>
     </div>
