@@ -12,14 +12,15 @@
             <span class="dropbtn">Namn</span>
             <div class="dropdown-content">
                 <?php
-                    $sql = "SELECT Namn FROM `anvandare`";
+                    $sql = "SELECT Namn,AID FROM `anvandare`";
                     $result = $con ->query($sql);
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             $Name = $row["Namn"];
+                            if ($row["AID"]) {
                             echo '<input type = "checkbox" name="Namn" value="'.$Name.'">'.$Name.'</input> <br>';
-                        }
-                        
+                            }
+                        } 
                     }
                 ?>
             </div>
@@ -47,61 +48,120 @@
     </form>
     <div class="tempruta">
     <?php
-    if (empty($_POST)){
-        echo "<script>alert('Du måste välja någonting')</script>";
-    }
+    // if (empty($_POST)){
+    //     echo "<script>alert('Du måste välja någonting')</script>";
+    // }
 
-    if (!empty($_POST)) {
+    if (!empty($_POST["Namn"])) {
         $num = NULL;
         foreach($_POST as $query_string_variable => $value) {
             $num += 1;
             if ($num == 1){
                 $namn = $value;
                 $sql = "SELECT AID FROM anvandare WHERE anvandare.Namn = '$namn'";
-                    $result = $con ->query($sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            $AID = $row["AID"];
-                            // echo $AID;
-                        }
+                $result = $con ->query($sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $AID = $row["AID"];
+                        // echo $AID;
                     }
+                }
                 // echo "$namn namn<br>";
             }
             else {
                 $kategori = $value;
-                    $sql = "SELECT KID FROM kategorier WHERE kategorier.Kategorier = '$kategori'";
-                    $result = $con ->query($sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            $KID = $row["KID"];
-                            // echo $KID;
-                        }
+                $sql = "SELECT KID FROM kategorier WHERE kategorier.Kategorier = '$kategori'";
+                $result = $con ->query($sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $KID = $row["KID"];
+                        // echo $KID;
                     }
+                }
 
-                    $sql = "SELECT SID FROM `spel`";
-                    $result = $con ->query($sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            $SID = $row["SID"];
-                            $sqlInsert = "INSERT INTO `resultat` (`AID`, `SID`, `KID`, `Poang`,`ID`) VALUES ('$AID', '$SID', '$KID', 0, NULL)";
-                            $resultInsert = $con ->query($sqlInsert);
-                            // echo $sqlInsert;
-                        }
+                $sql = "SELECT SID FROM `spel`";
+                $result = $con ->query($sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $SID = $row["SID"];
+                        $sqlInsert = "INSERT INTO `resultat` (`AID`, `SID`, `KID`, `Poang`,`ID`) VALUES ('$AID', '$SID', '$KID', 0, NULL)";
+                        $resultInsert = $con ->query($sqlInsert);
+                        // echo $sqlInsert;
                     }
+                }
             }
-
         }
     } 
+    else{
+        echo "Skipped <br>";
+    }
 
-    $sql = "SELECT anvandare.Namn, spel.Spel, kategorier.Kategorier, resultat.Poang FROM `anvandare`,`spel`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND spel.SID = resultat.SID AND kategorier.KID = resultat.KID";
+    if (!empty($_POST["Namn"])) {
+        echo '<script>window.location.href = "test.php";</script>';
+    }
+
+    
+    $sql = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
     $result = $con ->query($sql);
     if (mysqli_num_rows($result) > 0) {
         echo '<table>';
+        $test = NULL;
         while($row = mysqli_fetch_assoc($result)) {
-            echo $row["Spel"].$row["Namn"].$row["Kategorier"].$row["Poang"];
-            echo '<br>';
+            if ($test != $row["Namn"].$row["Kategorier"]) {
+            echo $row["Namn"]." ".$row["Kategorier"];
+            echo '<br>';    
+            }
+            $test = $row["Namn"].$row["Kategorier"];
         }
         echo '</table>';
+    }
+
+    echo "<br>";
+
+    $sql = "SELECT anvandare.Namn FROM `anvandare`,`resultat` WHERE anvandare.AID = resultat.AID";
+    $result = $con ->query($sql);
+    if (mysqli_num_rows($result) > 0) {
+        $Namn = NULL;
+        while($row = mysqli_fetch_assoc($result)) {
+            if ($Namn != $row["Namn"]) {
+                $Namn = $row["Namn"];
+                $num = rand(100000,999999);
+                echo '<div class = "anvandare" style="background-color:#'.$num.';">';
+                echo $Namn."<br>";
+                    $sql2 = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
+                    $result2 = $con ->query($sql2);
+                    if (mysqli_num_rows($result2) > 0) {
+                        $test = NULL;
+                        while($row2 = mysqli_fetch_assoc($result2)) {
+                            if ($test != $row2["Namn"].$row2["Kategorier"]) {
+                                if ($Namn == $row2["Namn"]){
+                                    echo $row2["Kategorier"];
+                                    echo '<br>';    
+                                } 
+                            }
+                            $test = $row2["Namn"].$row2["Kategorier"];
+                        }
+                    }
+                echo '</div>';
+                
+            }
+            $Namn = $row["Namn"];
+        }
+    }
+    
+    echo "<br>";
+
+    $sql = "SELECT anvandare.Namn, kategorier.Kategorier FROM `anvandare`,`kategorier`,`resultat` WHERE anvandare.AID = resultat.AID AND kategorier.KID = resultat.KID";
+    $result = $con ->query($sql);
+    if (mysqli_num_rows($result) > 0) {
+        $test = NULL;
+        while($row = mysqli_fetch_assoc($result)) {
+            if ($test != $row["Namn"]) {
+            echo $row["Namn"]." ".$row["Kategorier"];
+            echo '<br>';    
+            }
+            $test = $row["Namn"];
+        }
     }
     ?>
     </div>
